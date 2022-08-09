@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 
 import { DishService } from './services/dish.service';
@@ -62,6 +63,7 @@ import { LoginComponent } from './login/login.component';
     MatDialogModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
