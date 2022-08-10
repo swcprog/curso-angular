@@ -52,9 +52,46 @@
                   <span mat-line>-- {{ comment.author }} {{comment.date | date}} </span>
                 </div>
               </mat-list-item>
+              <mat-list-item *ngIf="fform.valid">
+                <span mat-line>{{ feedbackForm.value.message }}</span>
+                <span mat-line>{{ feedbackForm.value.rate }} Stars</span>
+                <span mat-line>-- {{ feedbackForm.value.firstname }}</span>
+              </mat-list-item>
             </mat-list>
           </mat-card-content>
         </mat-card>
+
+        <p>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <h2>Your Comment</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+              <p>
+                <mat-form-field class="full-width">
+                  <input matInput formControlName="firstname" placeholder="Name" type="text" required>
+                  <mat-error *ngIf="formErrors'firstname'">{{ formErrors['firstname'] }}</mat-error>
+                </mat-form-field>
+              </p>
+
+              <p>
+                <label>Rating</label>
+                <mat-slider formControlName="rate" min="1" max="5" step="1" value="5" thumbLabel tickInterval="1"></mat-slider>
+              </p>
+              <p>
+                <mat-form-field class="full-width">
+                  <textarea matInput formControlName="message" placeholder="Your Message" rows=12 cols=36></textarea>
+                  <mat-error *ngIf="formErrors'message'">{{ formErrors['message'] }}</mat-error>
+                </mat-form-field>
+              </p>
+              <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="fform.form.invalid">Submit</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </p>
     </div>
   </div>
 </div>
