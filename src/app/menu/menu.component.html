@@ -20,8 +20,12 @@
     </mat-grid-list>
   </div>
 
-  <div [hidden]="dishes">
+  <div [hidden]="dishes || errMess">
     <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div [hidden]="errMess">
+    <h4>Error</h4>
+    <h2>{{ errMess }}</h2>
   </div>
 
 </div>

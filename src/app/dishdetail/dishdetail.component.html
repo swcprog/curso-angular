@@ -29,8 +29,12 @@
           </mat-card-actions>
         </mat-card>
       </div>
-      <div [hidden]="dish">
+      <div [hidden]="dish || dishErrMsg">
         <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+      </div>
+      <div [hidden]="dishErrMsg">
+        <h4>Erro</h4>
+        <h2>{{ dishErrMsg }}</h2>
       </div>
   </div>
 
