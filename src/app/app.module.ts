@@ -39,6 +39,7 @@ import { LeaderService } from './services/leader.service';
 import { ProcessHttpmsgService } from './services/process-httpmsg.service';
 
 import { LoginComponent } from './login/login.component';
+import { HighLightDirective } from './directives/high-light.directive';
 
 
 
@@ -52,7 +53,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighLightDirective
   ],
   imports: [
     BrowserModule,

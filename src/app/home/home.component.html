@@ -22,9 +22,10 @@
 <div [hidden]="dish || dishErrMsg">
   <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
 </div>
-<div [hidden]="dishErrMsg">
-<h4>Error</h4>
-<h2>dishErrMsg</h2>
+
+<div *ngIf="dishErrMsg">
+  <h4>Error</h4>
+  <h2>{{dishErrMsg}}</h2>
 </div>
 
 <mat-card *ngIf="promotion" fxFlex>
