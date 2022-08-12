@@ -7,7 +7,7 @@
     fxLayoutGap.xs="0">
 
   <div fxFlex="40">
-    <div fxFlex *ngIf="dish">
+    <div fxFlex *ngIf="dish" [@visibility]="visibility">
         <mat-card>
           <mat-card-header>
             <mat-card-title>
@@ -32,7 +32,7 @@
       <div [hidden]="dish || dishErrMsg">
         <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
       </div>
-      <div [hidden]="dishErrMsg">
+      <div *ngIf="dishErrMsg">
         <h4>Erro</h4>
         <h2>{{ dishErrMsg }}</h2>
       </div>
@@ -40,7 +40,7 @@
 
 
   <div fxFlex="40">
-    <div fxFlex *ngIf="dish">
+    <div fxFlex *ngIf="dish" [@visibility]="visibility">
         <mat-card>
           <mat-card-header>
             <mat-card-title>
