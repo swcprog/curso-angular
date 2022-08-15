@@ -35,7 +35,18 @@
       </div>
     </div>
   </div>
-  <div fxFlex fxFlexOffset="20px" class="form-size">
+
+  <div *ngIf="feedBackResponse">
+    <h2>Your submit</h2>
+
+    <p>First name: {{ feedBackResponse.firstname }}</p>
+    <p>Last name: {{ feedBackResponse.lastname }}</p>
+    <p>Tel.: {{ feedBackResponse.telnum }}</p>
+    <p>Message: {{ feedBackResponse.message }}</p>
+    <p>ID: {{ feedBackResponse.id }}</p>
+
+  </div>
+  <div fxFlex fxFlexOffset="20px" class="form-size" *ngIf="!feedBackResponse">
     <h3>Send us your Feedback</h3>
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
 
@@ -79,5 +90,8 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
+  </div>
+  <div *ngIf="serverWait">
+    <mat-spinner></mat-spinner><h4>Loading . . .</h4>
   </div>
 </div>

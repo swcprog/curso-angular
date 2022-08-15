@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { expand, flyInOut } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 
 import { Feedback, ContactType } from '../shared/feedback';
 
@@ -24,6 +25,8 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  feedBackResponse: any;
+  serverWait = false;
 
   formErrors: { [char: string]: string } = {
     'firstname': '',
@@ -53,7 +56,9 @@ export class ContactComponent implements OnInit {
     },
   };
 
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder,
+    private service: FeedbackService) {
     this.createForm();
   }
 
@@ -78,18 +83,28 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(): void{
+    this.serverWait = true;
+    this.feedbackForm.value.id = Math.floor(Date.now() * Math.random()).toString(36);
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: 0,
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
-    this.feedbackFormDirective.resetForm();
+    console.log(this.feedback)
+    this.service.putFeedback(this.feedback)
+    .subscribe(  feedBackResponse => { this.feedBackResponse = feedBackResponse, this.serverWait = false, console.log(feedBackResponse);
+     })
+
+    setTimeout(() => {
+      this.feedBackResponse = null;
+      this.feedbackForm.reset({
+        firstname: '',
+        lastname: '',
+        telnum: 0,
+        email: '',
+        agree: false,
+        contacttype: 'None',
+        message: ''
+      });
+      this.feedbackFormDirective.resetForm();
+    }, 5000);
+
   }
 
   onValueChanged(data?: any) {
