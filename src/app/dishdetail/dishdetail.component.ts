@@ -10,6 +10,7 @@ import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Comment } from '../shared/comment';
+import { expand, flyInOut } from '../animations/app.animation';
 
 
 @Component({
@@ -27,8 +28,14 @@ import { Comment } from '../shared/comment';
             opacity: 0
         })),
         transition('* => *', animate('1s ease-in-out'))
-    ])
-  ]
+    ]),
+    flyInOut(),
+    expand()
+  ],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+    }
 })
 
 export class DishdetailComponent implements OnInit {
